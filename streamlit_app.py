@@ -1,14 +1,13 @@
 import os
-pip3 install torchvision 
-import torch
-import torchvision
-pip3 install faiss-cpu
 from PIL import Image
 import numpy as np
 import torchvision.transforms as transforms
 from torchvision.models import resnet50, ResNet50_Weights
 import faiss
 import streamlit as st
+import torch
+import torchvision
+import faiss -cpu
 
 
 # --- Model setup ---
