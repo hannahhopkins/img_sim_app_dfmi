@@ -3,10 +3,11 @@ from PIL import Image
 import numpy as np
 import torchvision.transforms as transforms
 from torchvision.models import resnet50, ResNet50_Weights
-import faiss
 import streamlit as st
 import torch
 import torchvision
+
+pip3 install faiss-cpu --force-reinstall
 
 
 # --- Model setup ---
