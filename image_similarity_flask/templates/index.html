@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Similarity Search</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    .grid { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
+    img { max-width: 200px; height: auto; border: 1px solid #ccc; }
+    .match { text-align: center; }
+  </style>
+</head>
+<body>
+  <h1>🔍 Image Similarity Finder</h1>
+  <form method="POST" enctype="multipart/form-data">
+    <p><strong>Upload reference images:</strong> <input type="file" name="ref_images" multiple required></p>
+    <p><strong>Upload query image:</strong> <input type="file" name="query_image" required></p>
+    <button type="submit">Find Similar Images</button>
+  </form>
+
+  {% if error %}
+    <p style="color: red;">{{ error }}</p>
+  {% endif %}
+
+  {% if query_img %}
+    <h2>Query Image:</h2>
+    <img src="{{ url_for('static', filename=query_img.split('static/')[1]) }}">
+
+    <h2>Top Matches:</h2>
+    <div class="grid">
+      {% for img, dist in matches %}
+        <div class="match">
+          <img src="{{ url_for('static', filename=img.split('static/')[1]) }}">
+          <p>Distance: {{ dist }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</body>
+</html>
