@@ -7,7 +7,6 @@ import faiss
 import streamlit as st
 import torch
 import torchvision
-import faiss -cpu
 
 
 # --- Model setup ---
