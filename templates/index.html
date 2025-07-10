@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Analogy Finder</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; }
+    img { max-height: 200px; margin: 10px; }
+    .gallery { display: flex; flex-wrap: wrap; gap: 10px; }
+    .image-block { text-align: center; }
+  </style>
+</head>
+<body>
+  <h1>🔍 Image Analogy Finder</h1>
+
+  <form action="/" method="POST" enctype="multipart/form-data">
+    <label>Upload Reference Images:</label><br>
+    <input type="file" name="reference_images" multiple required><br><br>
+
+    <label>Upload Query Image:</label><br>
+    <input type="file" name="query_image" required><br><br>
+
+    <button type="submit">Find Similar Images</button>
+  </form>
+
+  {% if query %}
+    <h2>Query Image</h2>
+    <img src="data:image/png;base64,{{ query }}">
+  {% endif %}
+
+  {% if matches %}
+    <h2>Top Matches</h2>
+    <div class="gallery">
+      {% for img_b64, path, dist in matches %}
+        <div class="image-block">
+          <img src="data:image/png;base64,{{ img_b64 }}">
+          <div><small>{{ dist | round(2) }}</small></div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</body>
+</html>
